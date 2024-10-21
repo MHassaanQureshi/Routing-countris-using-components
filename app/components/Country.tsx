@@ -1,4 +1,11 @@
-const Country = ({ name, population, capital, language }) => {
+interface CountryProps {
+  name: string;
+  population: string;
+  capital: string;
+  language: string;
+}
+
+const Country: React.FC<CountryProps> = ({ name, population, capital, language }) => {
   return (
     <div style={{ border: '1px solid #ccc', padding: '20px', marginTop: '20px' }}>
       <h2>{name}</h2>

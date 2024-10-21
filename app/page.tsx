@@ -1,7 +1,4 @@
-"use client";
-
-import { useState } from "react";
-import CountryDetails from "./components/Country";
+import Link from 'next/link';
 
 export default function HomePage() {
   const countries = [
@@ -12,33 +9,18 @@ export default function HomePage() {
     { name: "Germany", population: "83.2 million", capital: "Berlin", language: "German" },
   ];
 
-  const [selectedCountry, setSelectedCountry] = useState(countries[0]);
-
-  const handleCountryClick = (country) => {
-    setSelectedCountry(country);
-  };
-
   return (
     <div>
-      {/* Navbar */}
+   
       <nav style={{ display: 'flex', gap: '20px', background: '#eee', padding: '10px' }}>
         {countries.map((country) => (
-          <button
-            key={country.name}
-            onClick={() => handleCountryClick(country)}
-            style={{ cursor: 'pointer', padding: '10px', background: 'white', border: '1px solid #ccc' }}
-          >
-            {country.name}
-          </button>
+          <Link key={country.name} href={`/${country.name.toLowerCase()}`}>
+            <button style={{ cursor: 'pointer', padding: '10px', background: 'white', border: '1px solid #ccc' }}>
+              {country.name}
+            </button>
+          </Link>
         ))}
       </nav>
-
-      <CountryDetails
-        name={selectedCountry.name}
-        population={selectedCountry.population}
-        capital={selectedCountry.capital}
-        language={selectedCountry.language}
-      />
     </div>
   );
 }
